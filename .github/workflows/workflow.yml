@@ -1,0 +1,53 @@
+name: Build and release
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+concurrency: # Run release builds sequentially, cancel outdated PR builds
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    permissions: # Grant write access to github.token within non-pull_request builds
+      contents: write
+      packages: write
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+
+    - id: release
+      name: Prepare release
+      uses: mgoltzsche/conventional-release@v0
+
+    - name: Set up qemu
+      uses: docker/setup-qemu-action@v3
+      with:
+        platforms: all
+
+    - name: Build
+      if: '!steps.release.outputs.publish' # during non-release build
+      run: |
+        make build-release
+
+    - name: Log into GitHub Container Registry
+      if: steps.release.outputs.publish # during release build
+      run: echo "${{ github.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Publish release
+      if: steps.release.outputs.publish # during release build
+      run: |
+        make release VERSION=$RELEASE_VERSION
+

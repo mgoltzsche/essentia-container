@@ -1,0 +1,22 @@
+chromaprint:
+  compute: 0
+highlevel:
+  compute: 1
+  svm_models:
+  - /var/lib/essentia/svm-models/beta5/danceability.history
+  - /var/lib/essentia/svm-models/beta5/gender.history
+  - /var/lib/essentia/svm-models/beta5/genre_rosamerica.history
+  - /var/lib/essentia/svm-models/beta5/mood_acoustic.history
+  - /var/lib/essentia/svm-models/beta5/mood_aggressive.history
+  - /var/lib/essentia/svm-models/beta5/mood_electronic.history
+  - /var/lib/essentia/svm-models/beta5/mood_happy.history
+  - /var/lib/essentia/svm-models/beta5/mood_sad.history
+  - /var/lib/essentia/svm-models/beta5/mood_party.history
+  - /var/lib/essentia/svm-models/beta5/mood_relaxed.history
+  - /var/lib/essentia/svm-models/beta5/voice_instrumental.history
+  - /var/lib/essentia/svm-models/beta5/moods_mirex.history
+lowlevel:
+  frameSize: 2048
+  hopSize: 1024
+outputFormat: json
+outputFrames: 0
