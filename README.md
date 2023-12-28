@@ -16,7 +16,7 @@ Differences compared to the [official pre-built binaries](https://essentia.upf.e
 The following example shows how to download an audio file, analyze it using [`essentia_streaming_extractor_music`](https://essentia.upf.edu/streaming_extractor_music.html) and print the result JSON:
 ```sh
 docker run --rm ghcr.io/mgoltzsche/essentia sh -euxc '
-  URL=https://file-examples.com/storage/febcc861de6574e979a4c35/2017/11/file_example_OOG_2MG.ogg
+  URL=https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
   wget -qO input.ogg $URL
   essentia_streaming_extractor_music input.ogg - /etc/essentia/profile.yaml'
 ```
