@@ -17,8 +17,8 @@ The following example shows how to download an audio file, analyze it using [`es
 ```sh
 docker run --rm ghcr.io/mgoltzsche/essentia sh -euxc '
   URL=https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
-  wget -qO input.ogg $URL
-  essentia_streaming_extractor_music input.ogg - /etc/essentia/profile.yaml'
+  wget -qO input.mp3 $URL
+  essentia_streaming_extractor_music input.mp3 - /etc/essentia/profile.yaml'
 ```
 
 For more information, see the [Essentia Extractor documentation](https://essentia.upf.edu/extractors_out_of_box.html#extractors).
